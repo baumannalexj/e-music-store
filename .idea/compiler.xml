@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="HelloSpring2" />
+        <module name="eMusicStore" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="eMusicStore" target="1.5" />
+      <module name="emusicstore" target="1.5" />
       <module name="HelloSpring2" target="1.5" />
     </bytecodeTargetLevel>
   </component>

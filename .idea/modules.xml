@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HelloSpring2/HelloSpring2.iml" filepath="$PROJECT_DIR$/HelloSpring2/HelloSpring2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eMusicStore/eMusicStore.iml" filepath="$PROJECT_DIR$/eMusicStore/eMusicStore.iml" />
     </modules>
   </component>
 </project>
