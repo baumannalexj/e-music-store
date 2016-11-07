@@ -18,32 +18,40 @@ import java.util.List;
 @Transactional
 public class ProductDaoImplementation implements ProductDao {
 
+    private Session currentSession;
+
     @Autowired
     private SessionFactory sessionFactory;
 
+    private Session getCurrentSession() {
+        if (currentSession == null) {
+            currentSession = sessionFactory.getCurrentSession();
+        }
+        return currentSession;
+    }
+
     public void addProduct(Product product) {
-        Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(product);
-        session.flush();
+        getCurrentSession().saveOrUpdate(product);
+        getCurrentSession().flush();
     }
 
     public Product getProductById(String id) {
-        Session session = sessionFactory.getCurrentSession();
-        return session.get(Product.class, id);
+        Product product = (Product) getCurrentSession().get(Product.class, id);
+        getCurrentSession().flush();
+        return product;
     }
 
     public List<Product> getAllProducts() {
-        Session session = sessionFactory.getCurrentSession();
-        Query productsQuery = session.createQuery("from Product");
+        Query productsQuery = getCurrentSession().createQuery("from Product");
 
         List<Product> products = productsQuery.list();
-        session.flush();
+        getCurrentSession().flush();
         return products;
     }
 
+    @Deprecated
     public void deleteProduct(String id) {
-        Session session = sessionFactory.getCurrentSession();
-        session.delete(getProductById(id));
-        session.flush();
+        getCurrentSession().delete(getProductById(id));
+        getCurrentSession().flush();
     }
 }
