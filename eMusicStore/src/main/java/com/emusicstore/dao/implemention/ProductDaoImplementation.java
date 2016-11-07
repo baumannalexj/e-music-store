@@ -2,7 +2,7 @@ package com.emusicstore.dao.implemention;
 
 import com.emusicstore.dao.ProductDao;
 import com.emusicstore.model.Product;
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class ProductDaoImplementation implements ProductDao {
     }
 
     public Product getProductById(String id) {
-        Product product = (Product) getCurrentSession().get(Product.class, id);
+        Product product = getCurrentSession().get(Product.class, id);
         getCurrentSession().flush();
         return product;
     }

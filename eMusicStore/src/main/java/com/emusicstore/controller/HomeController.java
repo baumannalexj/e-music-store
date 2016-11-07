@@ -28,6 +28,8 @@ public class HomeController {
     @RequestMapping("/products")
     public String getProducts(Model model) {
         List<Product> products = productDao.getAllProducts();
+
+        /**instead of actionbean, this is how you use the variable 'products' in the model*/
         model.addAttribute("products", products);
 
         return "products";
@@ -40,4 +42,34 @@ public class HomeController {
 
         return "viewProduct";
     }
+
+    @RequestMapping("/admin")
+    public String adminPage() {
+        return "admin";
+    }
+
+    @RequestMapping("/admin/productInventory")
+    public String productInventory(Model model) {
+        List<Product> products = productDao.getAllProducts();
+        model.addAttribute("products", products);
+
+        return "productInventory";
+    }
+
+    @RequestMapping("/admin/productInventory/addProduct")
+    public String addProduct(Model model) {
+        Product product = new Product();
+        product.setName("new product name");
+        product.setCategory("new product category");
+        product.setDescription("new product ");
+        product.setPrice(-.009);
+        product.setCondition("new product ");
+        product.setStatus("new product ");
+        product.setUnitsInStock(-1);
+        product.setManufacturer("new product ");
+
+        model.addAttribute("product", product);
+        return "addProduct";
+    }
+
 }

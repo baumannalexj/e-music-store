@@ -6,6 +6,6 @@ package com.emusicstore.enums;
 public enum ProductCondition {
     NEW,
     USED,
-    REFURBISHED;
+    REFURBISHED
 
 }
