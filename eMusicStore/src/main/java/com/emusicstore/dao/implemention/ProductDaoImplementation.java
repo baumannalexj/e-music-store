@@ -2,9 +2,9 @@ package com.emusicstore.dao.implemention;
 
 import com.emusicstore.dao.ProductDao;
 import com.emusicstore.model.Product;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,16 +18,11 @@ import java.util.List;
 @Transactional
 public class ProductDaoImplementation implements ProductDao {
 
-    private Session currentSession;
-
     @Autowired
     private SessionFactory sessionFactory;
 
     private Session getCurrentSession() {
-        if (currentSession == null) {
-            currentSession = sessionFactory.getCurrentSession();
-        }
-        return currentSession;
+        return sessionFactory.getCurrentSession();
     }
 
     public void addProduct(Product product) {
