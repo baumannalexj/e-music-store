@@ -30,8 +30,8 @@ public class ProductDaoImplementation implements ProductDao {
         getCurrentSession().flush();
     }
 
-    public Product getProductById(String id) {
-        Product product = getCurrentSession().get(Product.class, id);
+    public Product getProductById(int productId) {
+        Product product = getCurrentSession().get(Product.class, productId);
         getCurrentSession().flush();
         return product;
     }
@@ -45,7 +45,7 @@ public class ProductDaoImplementation implements ProductDao {
     }
 
     @Deprecated
-    public void deleteProduct(String id) {
+    public void deleteProduct(int id) {
         getCurrentSession().delete(getProductById(id));
         getCurrentSession().flush();
     }
