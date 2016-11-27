@@ -33,8 +33,14 @@
                     <td>${product.category}</td>
                     <td>${product.condition}</td>
                     <td><span>${product.price}</span></td>
-                    <td><a href="<spring:url value="/products/viewProduct/${product.id}"/>">
-                        <span class="glyphicon glyphicon-info-sign"></span></a></td>
+                    <td>
+                        <a href="<spring:url value="/products/viewProduct/${product.id}"/>">
+                        <span class="glyphicon glyphicon-info-sign"></span></a>
+
+                        <a href="<spring:url value="/admin/productInventory/deleteProduct/${product.id}"/>">
+                        <span class="glyphicon glyphicon-remove"></span></a>
+
+                    </td>
                 </tr>
             </c:forEach>
         </table>

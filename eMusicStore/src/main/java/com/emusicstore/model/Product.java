@@ -1,9 +1,8 @@
 package com.emusicstore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.*;
 
 /**
  * Created by Alexander on 016 10 16 2016 .
@@ -22,6 +21,9 @@ public class Product {
     private String status;
     private int unitsInStock;
     private String manufacturer;
+    //Hibernate will not make a column for this
+    @Transient
+    private MultipartFile image;
 
 
     public int getId() {
@@ -94,5 +96,13 @@ public class Product {
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 }
