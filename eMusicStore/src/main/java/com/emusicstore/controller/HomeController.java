@@ -78,7 +78,7 @@ public class HomeController {
     public String addProductPost(@ModelAttribute("product") Product product) {
         productDao.addProduct(product);
 
-        return "redirect:admin/productInventory";
+        return "redirect:/admin/productInventory";
     }
 
 }
