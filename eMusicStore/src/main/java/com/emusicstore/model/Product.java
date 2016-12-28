@@ -21,7 +21,7 @@ public class Product {
     private String status;
     private int unitsInStock;
     private String manufacturer;
-    //Hibernate will not make a column for this
+    //Hibernate will not make a column for "Transient" tag
     @Transient
     private MultipartFile image;
 
