@@ -6,12 +6,15 @@
 
     <div class="container">
         <div class="page-header">
-            <h1>Add Product</h1>
-            <p class="lead">Add a product to your inventory</p>
+            <h1>Edit Product</h1>
+            <p class="lead">Edit a product from your inventory</p>
         </div>
 
-        <form:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct"
+        <form:form action="${pageContext.request.contextPath}/admin/productInventory/editProduct"
                    method="post" commandName="product" enctype="multipart/form-data">
+
+            <form:hidden path="id" id="id" value="${product.id}" />
+            <p>Product ID: ${product.id}</p>
 
         <div class="form-group">
             <label for="name">Name</label>
@@ -64,7 +67,7 @@
         </div>
         <br/>
 
-        <input type="submit" value="Add Product" class="btn btn-default">
+        <input type="submit" value="Update Product" class="btn btn-default">
         <a href="<c:url value="/admin/productInventory" />" class="btn btn-default">Cancel</a>
 
         </form:form>

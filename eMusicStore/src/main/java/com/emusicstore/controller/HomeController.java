@@ -28,10 +28,10 @@ public class HomeController {
     @Autowired
     private ProductDao productDao;
 
-    private Path getImagePath(int productId, HttpServletRequest request) {
+    private Path getImagePath(Product product, HttpServletRequest request) {
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 
-        return Paths.get(rootDirectory + "\\WEB-INF\\resources\\images\\" + productId + ".png");
+        return Paths.get(rootDirectory + "\\WEB-INF\\resources\\images\\" + product.getId() + ".png");
     }
 
     @RequestMapping("/")
@@ -73,15 +73,6 @@ public class HomeController {
     @RequestMapping("/admin/productInventory/addProduct")
     public String addProduct(Model model) {
         Product product = new Product();
-//        product.setName("new product name");
-//        product.setCategory("new product category");
-//        product.setDescription("new product ");
-//        product.setPrice(-.009);
-//        product.setCondition("new product ");
-//        product.setStatus("new product ");
-//        product.setUnitsInStock(-1);
-//        product.setManufacturer("new product ");
-
         model.addAttribute("product", product);
         return "addProduct";
     }
@@ -91,8 +82,7 @@ public class HomeController {
         productDao.addProduct(product);
 
         MultipartFile productImage = product.getImage();
-        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = getImagePath(product.getId(), request);
+        path = getImagePath(product, request);
 
         if (productImage != null && !productImage.isEmpty()) {
             try {
@@ -109,15 +99,14 @@ public class HomeController {
     @RequestMapping(value = "/admin/productInventory/editProduct/{productId}")
     public String editProduct(@PathVariable("productId") int productId, Model model) {
         Product product = productDao.getProductById(productId);
-
+        model.addAttribute("product", product);
         return "editProduct";
     }
 
     @RequestMapping(value = "/admin/productInventory/editProduct", method = RequestMethod.POST)
     public String editProductPost(@ModelAttribute("product") Product product, Model model, HttpServletRequest request) {
         MultipartFile productImage = product.getImage();
-        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = getImagePath(product.getId(), request);
+        path = getImagePath(product, request);
 
         if (productImage != null && !productImage.isEmpty()) {
             try {
@@ -134,8 +123,7 @@ public class HomeController {
 
     @RequestMapping(value = "/admin/productInventory/deleteProduct/{productId}")
     public String deleteProduct(@PathVariable int productId, Model model, HttpServletRequest request) {
-        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = getImagePath(productId, request);
+        path = getImagePath(productDao.getProductById(productId), request);
 
         if (Files.exists(path)) {
             try {

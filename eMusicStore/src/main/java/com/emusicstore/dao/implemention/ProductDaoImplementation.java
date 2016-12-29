@@ -26,12 +26,12 @@ public class ProductDaoImplementation implements ProductDao {
     }
 
     public void addProduct(Product product) {
-        getCurrentSession().saveOrUpdate(product);
+        getCurrentSession().save(product);
         getCurrentSession().flush();
     }
 
     public void editProduct(Product product) {
-        getCurrentSession().saveOrUpdate(product);
+        getCurrentSession().update(product);
         getCurrentSession().flush();
     }
 
